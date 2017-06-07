@@ -5,7 +5,7 @@
 */
 
 #define BENCHMARKING
-#define DUMP_QUERIES
+//#define DUMP_QUERIES
 
 #include<Python.h>
 #include<iostream>
