@@ -3,7 +3,7 @@ from distutils.core import setup, Extension
 module1 = Extension('pgrange',
                     sources = ['pgrange.cpp'],
                     extra_compile_args=['-std=c++11','-I/usr/include/postgresql'],
-                    libraries=['pq'])
+                    libraries=['libpq'])
 
 
 
