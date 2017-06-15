@@ -5,8 +5,11 @@ import matplotlib.pyplot as plt;
 
 q = pgrange.performQuery(
     "dbname = points user = postgres password = postgres hostaddr = 127.0.0.1 port = 5432",
-    545390.445795515,
-    5800605.7953092)
+ 	545390.445795515,
+    	5800605.7953092,
+	64,
+	4, 
+	32632)
 
 print(q)
 
