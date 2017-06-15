@@ -1,12 +1,12 @@
 # Python Extension for Creating Feature Vectors from LiDAR data using pgsql
 
-This module contains hard-coded query processing in C++ for retrieving feature vectors (min, max, average) of
+This module contains hard-coded query processing in C++ for retrieving feature vectors (min, average, max) of
 points given a context. Therefore,
 
 * a range query is processed taking the 128x128m region around a query location into account.
 * all points are sorted into 128x128 cells
-* empty cells are filled using a kNN query (3 nearest neighbors)
-* cell statistics is calculated (min, max, mean) and
+* empty cells are filled using a kNN query (4 nearest neighbors)
+* cell statistics is calculated (min, mean, max) and
 * returned as a numpy array for deep learning
 
 # Installation:
@@ -70,5 +70,5 @@ SELECT x,y,z FROM points WHERE geom && ST_MakeEnvelope(545262.44579551497,580047
 ```
 * kNN query (k=3)
 ```
-SELECT * FROM points order by geom <#> ST_Point(545454.44579551497,5800669.7953092) LIMIT 3;
+SELECT * FROM points order by geom <-> ST_Point(545454.44579551497,5800669.7953092) LIMIT 4;
 ```
