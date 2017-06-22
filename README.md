@@ -1,12 +1,12 @@
 # Python Extension for Creating Feature Vectors from LiDAR data using pgsql
 
-This module contains hard-coded query processing in C++ for retrieving feature vectors (min, max, average) of
+This module contains hard-coded query processing in C++ for retrieving feature vectors (min, average, max) of
 points given a context. Therefore,
 
 * a range query is processed taking the 128x128m region around a query location into account.
 * all points are sorted into 128x128 cells
-* empty cells are filled using a kNN query (3 nearest neighbors)
-* cell statistics is calculated (min, max, mean) and
+* empty cells are filled using a kNN query (4 nearest neighbors)
+* cell statistics is calculated (min, mean, max) and
 * returned as a numpy array for deep learning
 
 # Installation:
@@ -26,7 +26,7 @@ On Linux, you need libpostgres-dev package. You can find out some compiler setti
 
 # Using it from python
 
-Look at sample.py. You need to give a working connection string and two coordiantes and get back a numpy array
+Look at sample.py. You need to give a working connection string, two coordinates, the k for k-nearest-neighbour and the srid of your data and get back a numpy array
 for the features.
 
 # Sample Data:
