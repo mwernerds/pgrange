@@ -40,12 +40,11 @@ std::string range_query(double xmin, double ymin, double xmax, double ymax, int 
 	return(ss.str());
 }
 
-std::string knn_query(double x, double y, int k)
+std::string knn_query(double x, double y, int k, int srid)
 {
-
 	std::stringstream ss;
 	ss.precision(std::numeric_limits<double>::max_digits10);
-	ss << "SELECT * FROM points order by geom <-> ST_SetSRID(ST_Point(" << x << "," << y << "), 5650) LIMIT " << k << ";";
+	ss << "SELECT * FROM points order by geom <-> ST_SetSRID(ST_Point(" << x << "," << y << ")," << srid << ") LIMIT " << k << ";";
 	return(ss.str());
 }
 
@@ -184,7 +183,7 @@ std::vector<double> calculateFeatures(PGconn *conn, double xorigin = 33313000.00
 			{
 
 				auto cp = dehomogenous(hc);
-				auto q = knn_query(cp.first, cp.second, k);
+				auto q = knn_query(cp.first, cp.second, k, srid);
 				auto knn = pointsFromSQL(conn, q);
 				Zvalues.resize(knn.size() / 3);
 				for (size_t i = 0; i < knn.size() / 3; i++)
