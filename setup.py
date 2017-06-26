@@ -2,8 +2,8 @@ from distutils.core import setup, Extension
 
 module1 = Extension('pgrange',
                     sources = ['pgrange.cpp'],
-                    extra_compile_args=['-std=c++11','-I/usr/include/postgresql'],
-                    libraries=['pq'])
+                    extra_compile_args=['-std=c++11','-I/usr/lib/postgresql/9.5/bin','-I/usr/include/postgresql'],
+		    		        libraries=['pq'])
 
 # example for extra_compile_args=['-std=c++11','-I/usr/lib/postgresql/9.5/bin','-I/usr/include/postgresql']
 
